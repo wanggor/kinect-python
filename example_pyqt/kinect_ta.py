@@ -26,7 +26,8 @@ class KinectTA():
         array = array.astype(np.uint8)
         array = cv2.cvtColor(array,cv2.COLOR_GRAY2BGR)
         return array
-        
+    
+    # looping to get image RGB
     def image_loop(self):
         rgb=self.get_video()
         return rgb
