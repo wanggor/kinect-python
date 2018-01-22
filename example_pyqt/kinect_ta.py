@@ -31,6 +31,6 @@ class KinectTA():
     def image_loop(self):
         rgb=self.get_video()
         return rgb
-        
+        #
     def image_stop(self):
         freenect.sync_stop()
