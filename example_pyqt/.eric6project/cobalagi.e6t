@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project cobalagi -->
+<!-- Saved: 2018-01-21, 20:54:19 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{ece43f0a-9cc6-49ae-995d-30699766f790}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-21, 20:39:46</Created>
+    <Resource>
+      <Filename>ui/mainwindow.py</Filename>
+      <Linenumber>34</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>

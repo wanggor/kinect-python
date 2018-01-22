@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project cobaKinect -->
+<!-- Saved: 2018-01-21, 21:56:47 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{06637e7c-53c7-4ec7-bac9-9a9b118dd98e}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-21, 21:52:36</Created>
+    <Resource>
+      <Filename>mainwindow.py</Filename>
+      <Linenumber>41</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{d9ad03e3-cd13-490b-9346-ca1aab30d768}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-21, 21:52:36</Created>
+    <Resource>
+      <Filename>mainwindow.py</Filename>
+      <Linenumber>49</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>
