@@ -29,8 +29,8 @@ class WahyuKinect:
 		# image view object
 		self.imgview1 = guibuilder.get_object("imgv1")
 		self.imgview2 = guibuilder.get_object("imgv2")
-		self.imgview1.set_size_request(320, height=240)
-		self.imgview2.set_size_request(320, height=240)
+		self.imgview1.set_size_request(640, 480)
+		self.imgview2.set_size_request(640, 480)
 		
 		# button start object
 		btnStart=guibuilder.get_object("btnStart")
@@ -54,7 +54,7 @@ class WahyuKinect:
 		self.t1 = 0
 		
 		# add timeout callback
-		gtk.timeout_add(40, self.loop_cb) # 40 finest resolution
+		gtk.timeout_add(40, self.loop_cb) # 40 finest interval
 		
 		# define kinect object
 		self.kc = KinectTA()
@@ -79,7 +79,7 @@ class WahyuKinect:
 				img1 = self.kc.get_video()
 			else:
 				img1 = self.kc.get_infra()
-				
+					
 			self.imgview1.set_from_pixbuf(gtk.gdk.pixbuf_new_from_array(
 										img1,
 										gtk.gdk.COLORSPACE_RGB,
@@ -88,10 +88,10 @@ class WahyuKinect:
 			if self.rbtGray.get_active():
 				img2 = self.kc.get_depthGray()
 			elif self.rbtJET.get_active():
-				img2 = self.kc.get_depthGray()
+				img2 = self.kc.get_depthJET()
 			elif self.rbtThresh.get_active():							
 				img2 = self.kc.get_depthThres()
-				
+			
 			self.imgview2.set_from_pixbuf(gtk.gdk.pixbuf_new_from_array(
 										img2,
 										gtk.gdk.COLORSPACE_RGB,
