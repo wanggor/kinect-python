@@ -10,7 +10,8 @@ from PyQt5 import QtCore,  QtWidgets,  QtGui
 
 from Ui_kinnect import Ui_MainWindow
 from kinect_ta import KinectTA
-t=0
+
+import threading
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -23,8 +24,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param parent reference to the parent widget
         @type QWidget
         """
-        self.tmr = QtCore.QTimer()
-        self.tmr.timeout.connect(self.kinect_image)
+
         #class kinect 
         self.knct = KinectTA()
         
@@ -33,18 +33,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.isGray = 0 #defoul JET
         self.isRGB = 1
-        self.t2=0
-        print('a')
-        
+        self.stop = 1
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
+        t1= threading.Thread(target=self.layar_1, args=())
+        t2= threading.Thread(target=self.layar_2, args=())
+        
+        t1.start()
+        t2.start()
+        
+        t1.join()
+        t2.join()
+        
+       
     
     @pyqtSlot()
     def on_btnStrart_released(self):
         """
         Slot documentation goes here.
         """
-        self.tmr.start(0)
+        self.stop = 1
+#        t1= threading.Thread(target=self.layar_1, args=())
+#        t2= threading.Thread(target=self.layar_2, args=())
+#        
+#        t1.start()
+#        t2.start()
+#        
+#        t1.join()
+#        t2.join()
+        self.layar_1()
+
+        
        
     
     @pyqtSlot()
@@ -52,7 +71,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        self.tmr.stop()
+        self.stop = 0
         self.knct.image_stop()
     
     @pyqtSlot()
@@ -111,13 +130,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         # TODO: not implemented yet
         self.isRGB = 2
-
-    def kinect_image(self):
-        t1=time.time()
-        #print(t1-self.t2)
-      
         
-        #layar 1
+    def layar_1(self):
+
+
         if self.isRGB == 1:
             RGB = self.knct.get_video()
             qimg1 = QtGui.QImage(RGB.data,RGB.shape[1], RGB.shape[0], QtGui.QImage.Format_RGB888)
@@ -128,10 +144,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             qimg1 = QtGui.QImage(RGB.data,RGB.shape[1], RGB.shape[0], QtGui.QImage.Format_RGB888)
             self.scene1.addPixmap(QtGui.QPixmap(qimg1))
             self.grpvImg1.setScene(self.scene1)
+                
+    def layar_2(self):
         
-        #qimg = QtGui.QImage(imghasil.data,imghasil.shape[1], imghasil.shape[0], QtGui.QImage.Format_RGB888)
-       
-        #layar 2
+        
+                        
         if self.isGray == 1:
             Gray = self.knct.get_depthGray()
             qimg2 = QtGui.QImage(Gray.data,Gray.shape[1], Gray.shape[0], QtGui.QImage.Format_RGB888)
@@ -147,7 +164,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             qimg2 = QtGui.QImage(Thrs.data,Thrs.shape[1], Thrs.shape[0], QtGui.QImage.Format_RGB888)
             self.scene2.addPixmap(QtGui.QPixmap(qimg2))
             self.grpvImg2.setScene(self.scene2)
-        self.t2=time.time()
+        
+
+
+      
+        
+        #layar 1
+        
+        
+        #qimg = QtGui.QImage(imghasil.data,imghasil.shape[1], imghasil.shape[0], QtGui.QImage.Format_RGB888)
+       
+        #layar 2
+        
         
         
        
