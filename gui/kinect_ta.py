@@ -8,6 +8,12 @@ class KinectTA():
     def __init__(self, parent=None):
         pass
         
+    def kinect_init(self):
+        freenect.init()
+        
+    def kinect_stop(self):
+    	freenect.sync_stop()
+
     #function to get RGB image from kinect
     def get_video(self):
         array,_ = freenect.sync_get_video()
@@ -28,7 +34,7 @@ class KinectTA():
         array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
         return array
         
-    def depth_thres(self):
+    def get_depthThres(self):
         array,_ = freenect.sync_get_depth()
         array = array.astype(np.uint8)
         th,array=cv2.threshold(array,0, 255, cv2.THRESH_OTSU)
@@ -41,7 +47,3 @@ class KinectTA():
         array = array.astype(np.uint8)
         array = cv2.cvtColor(array,cv2.COLOR_GRAY2RGB)
         return array
-
-     
-    def image_stop(self):
-        freenect.sync_stop()
