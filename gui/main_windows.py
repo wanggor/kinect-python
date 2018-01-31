@@ -7,8 +7,9 @@ Created on Tue Jan 30 08:31:06 2018
 """
 import numpy as np
 import cv2
-import freenect
 import time
+from kinect_ta import KinectTA
+
 
 class main_windows():
     
@@ -44,6 +45,8 @@ class main_windows():
                 position.append([j+y,i+x])
         
         return img, position
+
+
     
     def Btn_Click(event,x,y,flags,param):
         global Gray
@@ -126,43 +129,7 @@ class main_windows():
                  else:
                      gambar= cv2.circle(gambar,(105,615), 5, (0,0,255), -1)
 
-def get_depth():
-    array,_ = freenect.sync_get_depth()
-    array = array.astype(np.uint8)
-    array = cv2.cvtColor(array,cv2.COLOR_GRAY2BGR)
-    return array
-#function to get infrared camera 
-def get_infra():
-    array,_ = freenect.sync_get_video(0, freenect.VIDEO_IR_10BIT)
-    array = array.astype(np.uint8)
-    array = cv2.cvtColor(array,cv2.COLOR_GRAY2BGR)
-    return array
-def get_video():
-    array,_ = freenect.sync_get_video()
-    #array = cv2.cvtColor(array,cv2.COLOR_RGB2BGR)
-    return array
-def get_depthJET():
-    array,_ = freenect.sync_get_depth()
-    array = array.astype(np.uint8)
-    array = cv2.applyColorMap(array, cv2.COLORMAP_JET)
-    return array
-#function to get infrared camera 
-
-def get_depthGray():
-    array,_ = freenect.sync_get_depth()
-    array = array.astype(np.uint8)
-    array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
-    return array
-    
-def depth_thres():
-    array,_ = freenect.sync_get_depth()
-    array = array.astype(np.uint8)
-    th,array=cv2.threshold(array,0, 255, cv2.THRESH_OTSU)
-    array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
-    return array                     
-            
-                     
-                     
+       
                      
 Gray = 0
 Jet = 0
@@ -182,16 +149,20 @@ gambar = windows.background()
 
 gambar, pss_Start = windows.button(gambar,100,500,150,'Start')
 gambar, pss_Pause= windows.button(gambar,100,550,150,'Pause')
+radiobtn_1 = [pss_Start,pss_Pause]
 
 gambar, pss_Record= windows.button(gambar,100,600,150,'Record')
 
 gambar, pss_RGB = windows.button(gambar,400,525,150,'Citra RGB')
 gambar, pss_Infra= windows.button(gambar,400,575,150,'Citra Inframerah')
+radiobtn_2 = [pss_RGB,pss_Infra]
 
 gambar, pss_Gray = windows.button(gambar,700,500,270,'Citra Kedalam (Gray Scale)')
 gambar, pss_JET= windows.button(gambar,700,550,270,'Citra Kedalaman (JET)')
 gambar, pss_Thres = windows.button(gambar,700,600,270,'Citra Kedalaman (Thresholding)')
+radiobtn_3 = [pss_Gray,pss_JET,pss_Thres]
 
+radioBtn = [radiobtn_1,radiobtn_2,radiobtn_3]
 
 
 cv2.namedWindow('image')
@@ -203,15 +174,15 @@ while(1):
     print(t2-t1)
     t1 = time.time()
     if RGB%2 is not 0:
-        img1 = get_video()
+        img1 = KinectTA.get_video()
     else :
-        img1 = get_infra()
+        img1 = KinectTA.get_infra()
     if Gray%2 is not 0:
-        img2 = get_depthGray()
+        img2 = KinectTA.get_depthGray()
     elif Jet%2 is not 0:
-        img2 = get_depthJET()
+        img2 = KinectTA.get_depthJET()
     else:
-        img2 =depth_thres()
+        img2 = KinectTA.depth_thres()
         
     
     gambar[10:490,10:650] = img1[:,:]
