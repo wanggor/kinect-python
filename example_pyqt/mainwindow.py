@@ -26,6 +26,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tmr = QtCore.QTimer()
         self.tmr.timeout.connect(self.kinect_image)
         
+        #class kinect 
         self.knct = KinectTA()
         
         self.scene = QtWidgets.QGraphicsScene()
@@ -39,7 +40,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot documentation goes here.
         """
         # TODO: not implemented yet
-        self.tmr.start(10)
+        self.tmr.start(100)
     
     @pyqtSlot()
     def on_btnStop_clicked(self):
