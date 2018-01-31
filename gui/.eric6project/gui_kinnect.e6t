@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
+<!-- eric6 tasks file for project gui_kinnect -->
+<!-- Saved: 2018-01-29, 21:18:49 -->
+<Tasks version="6.0">
+  <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{b5cde550-588d-45c5-ae7d-78a8e0446c6c}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>61</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{15d59a5c-0247-4c99-8b9b-0d1cf4b2eb0b}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>72</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{3bde9f56-69ea-4f6d-94f8-cf2929c067be}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>82</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{df46b7bd-e25a-4103-a679-de5f10bf309b}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>92</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{e0615101-8764-47d5-b4c2-a278088ae6d8}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>101</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{8c4d50c6-e2a1-4017-b905-a387007693fa}">
+    <Summary>TODO: not implemented yet</Summary>
+    <Description></Description>
+    <Created>2018-01-29, 21:18:04</Created>
+    <Resource>
+      <Filename>kinnect.py</Filename>
+      <Linenumber>110</Linenumber>
+    </Resource>
+  </Task>
+</Tasks>
