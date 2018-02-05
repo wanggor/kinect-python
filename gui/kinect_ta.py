@@ -11,7 +11,7 @@ class KinectTA():
     #function to get RGB image from kinect
     def get_video():
         array,_ = freenect.sync_get_video()
-        #array = cv2.cvtColor(array,cv2.COLOR_RGB2BGR)
+        array = cv2.cvtColor(array,cv2.COLOR_RGB2BGR)
         return array
     
     #function to get depth image from kinect
@@ -19,6 +19,7 @@ class KinectTA():
         array,_ = freenect.sync_get_depth()
         array = array.astype(np.uint8)
         array = cv2.applyColorMap(array, cv2.COLORMAP_JET)
+        array = cv2.cvtColor(array, cv2.COLOR_RGB2BGR)
         return array
     #function to get infrared camera 
     
