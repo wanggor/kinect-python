@@ -48,7 +48,7 @@ t1 = 0
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-
+n=0;
 
 while(1):
     t2 = time.time()
@@ -57,12 +57,21 @@ while(1):
 
     img1 = display.layar_1(rdio_btn.signal)
     img2 = display.layar_2(rdio_btn.signal)
+    
+    img1,img2, lubang =display.obj_track(img1,img2)
 
     gambar = display.merge(rdio_btn.gambar,img1,img2)
     cv2.imshow('image',gambar)
     
     main_windows.tble_view(gambar,data)
     
+    if rdio_btn.signal[0] == 1:
+        
+        for i in lubang :
+           if i[0] == 320:
+               data[n][2]=i[2]
+               n=n+1
+           
     
     #save video when start and rerecord button is pressed
     if rdio_btn.signal[0] == 1 and rdio_btn.signal[2] == 1:
