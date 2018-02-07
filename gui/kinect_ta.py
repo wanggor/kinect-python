@@ -32,7 +32,8 @@ class KinectTA():
     def get_depthGray16bit():
         array,_ = freenect.sync_get_depth()
 #        array = array.astype(np.uint8)
-        return array
+        th, array_thrs = cv2.threshold(array.astype(np.uint8),0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+        return array,array_thrs
         
     def depth_thres():
         array,_ = freenect.sync_get_depth()

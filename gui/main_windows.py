@@ -40,7 +40,7 @@ cv2.setMouseCallback('image',rdio_btn.Btn_Click)
 
 
 
-data = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
+data = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
 
 t1 = 0
 
@@ -68,10 +68,13 @@ while(1):
     if rdio_btn.signal[0] == 1:
         
         for i in lubang :
-           if i[0] == 320:
-               data[n][2]=i[2]
+           if i[0] >= 319 and i[0] <= 321 :
                n=n+1
+               
            
+               
+               data.append([n,i[2],i[3],i[4],'none'])
+               
     
     #save video when start and rerecord button is pressed
     if rdio_btn.signal[0] == 1 and rdio_btn.signal[2] == 1:

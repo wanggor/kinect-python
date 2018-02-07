@@ -77,7 +77,7 @@ class main_windows():
             n=0
             for j in i:
                       
-                cv2.putText(background,str(j),(930+x,695-y), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+                cv2.putText(background,str(j),(930+x,695-y), font, 0.3,(50,50,50),1,cv2.LINE_AA)
                 x = x + space[n]
                 n=n+1
             y = y + 30
