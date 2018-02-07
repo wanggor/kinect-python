@@ -28,6 +28,11 @@ class KinectTA():
         array = array.astype(np.uint8)
         array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
         return array
+    
+    def get_depthGray16bit():
+        array,_ = freenect.sync_get_depth()
+#        array = array.astype(np.uint8)
+        return array
         
     def depth_thres():
         array,_ = freenect.sync_get_depth()

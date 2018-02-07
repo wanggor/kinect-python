@@ -62,7 +62,7 @@ while(1):
 
     gambar = display.merge(rdio_btn.gambar,img1,img2)
     cv2.imshow('image',gambar)
-    
+#    print(lubang)
     main_windows.tble_view(gambar,data)
     
     if rdio_btn.signal[0] == 1:

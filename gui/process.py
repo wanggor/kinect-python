@@ -47,6 +47,8 @@ class display:
         return gambar
     
     def obj_track(RGB, bw):
+        depth = KinectTA.get_depthGray16bit()
+        matriks = np.ones((480,640),'uint16')
         lem = cv2.cvtColor(bw,cv2.COLOR_BGR2GRAY)
 
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(15,1))
@@ -66,13 +68,25 @@ class display:
             x=x+int(w/2)
             y=y+int(h/2)
             cv2.circle(RGB,(x,y), 5, (0,0,255), -1)
+            
+            img = cv2.drawContours(matriks, contour, 0, 1, -1)
+            depth = depth*img
+            
+            
+            
+            maksimal = np.max(depth)
+            minimal = np.min(depth)
+            volume = np.sum(depth)
             area = cv2.contourArea(c)
+            
 #            cv2.putText(RGB,str(area),x,y), font, 0.5,(50,50,50),1,cv2.LINE_AA)
             
             #menambahkan posisi serta area tiap objeck
-            posisi.append([x,y,area])
+            posisi.append([x,y,area,volume,maksimal,minimal])
         
         return RGB,bw,posisi
+    
+#    def ukuran (posisi)
     
 
     
