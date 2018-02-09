@@ -43,7 +43,7 @@ class main_windows():
         
         return img, position
     
-    def tble_view(background, data=[[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]):
+    def tble_view(background, data=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]):
     
         font = cv2.FONT_HERSHEY_DUPLEX
         size = len(data)

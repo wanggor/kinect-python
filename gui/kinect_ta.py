@@ -14,33 +14,35 @@ class KinectTA():
         array = cv2.cvtColor(array,cv2.COLOR_RGB2BGR)
         return array
     
-    #function to get depth image from kinect
+    #function to get depth image from kinect (JET)
     def get_depthJET():
-        array,_ = freenect.sync_get_depth()
-        array = array.astype(np.uint8)
+        depth,_ = freenect.sync_get_depth()
+        array = depth.astype(np.uint8)
         array = cv2.applyColorMap(array, cv2.COLORMAP_JET)
         array = cv2.cvtColor(array, cv2.COLOR_RGB2BGR)
-        return array
+        return array,depth
+    
     #function to get infrared camera 
     
     def get_depthGray():
-        array,_ = freenect.sync_get_depth()
-        array = array.astype(np.uint8)
+        depth,_ = freenect.sync_get_depth()
+        array = depth.astype(np.uint8)
         array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
-        return array
+        return array,depth
     
-    def get_depthGray16bit():
-        array,_ = freenect.sync_get_depth()
-#        array = array.astype(np.uint8)
-        th, array_thrs = cv2.threshold(array.astype(np.uint8),0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
-        return array,array_thrs
         
     def depth_thres():
-        array,_ = freenect.sync_get_depth()
-        array = array.astype(np.uint8)
+        depth,_ = freenect.sync_get_depth()
+        array = depth.astype(np.uint8)
         th,array=cv2.threshold(array,0, 255, cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+
+#        kernel = cv2.getStructuringElement(cv2.MORPH_CROSS,(5,5))
+#        kernel2 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5))
+#        array = cv2.morphologyEx(array,cv2.MORPH_OPEN,kernel)
+#        array = cv2.morphologyEx(array,cv2.MORPH_CLOSE,kernel2)
+
         array = cv2.cvtColor(array, cv2.COLOR_GRAY2RGB)
-        return array
+        return array,depth
         
     # looping to get image RGB
     def get_infra():

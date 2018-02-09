@@ -48,7 +48,7 @@ t1 = 0
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-n=0;
+
 
 while(1):
     t2 = time.time()
@@ -56,26 +56,17 @@ while(1):
     t1 = time.time()
 
     img1 = display.layar_1(rdio_btn.signal)
-    img2 = display.layar_2(rdio_btn.signal)
+    img2,depth = display.layar_2(rdio_btn.signal)
     
-    img1,img2, lubang =display.obj_track(img1,img2)
+    img1, lubang = display.obj_track(img1,depth)
 
     gambar = display.merge(rdio_btn.gambar,img1,img2)
     cv2.imshow('image',gambar)
-#    print(lubang)
-    main_windows.tble_view(gambar,data)
-    
-    if rdio_btn.signal[0] == 1:
+
         
-        for i in lubang :
-           if i[0] >= 319 and i[0] <= 321 :
-               n=n+1
-               
-           
-               
-               data.append([n,i[2],i[3],i[4],'none'])
-               
-    
+    data =display.data_jalan(lubang,data,rdio_btn.signal)
+    main_windows.tble_view(gambar,data)
+
     #save video when start and rerecord button is pressed
     if rdio_btn.signal[0] == 1 and rdio_btn.signal[2] == 1:
         frame = cv2.flip(img2,0)
@@ -84,6 +75,7 @@ while(1):
     if cv2.waitKey(20) & 0xFF == 27:
         KinectTA.image_stop()
         break
+    
 out.release()
 cv2.destroyAllWindows()
                 
