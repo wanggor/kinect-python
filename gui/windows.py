@@ -43,6 +43,20 @@ class main_windows():
         
         return img, position
     
+    
+    def Gps (background, data_Gps = ["not connected",0,0,0]):
+        font = cv2.FONT_HERSHEY_DUPLEX
+        cv2.rectangle(background,(630,520),(850,700),(240,240,240),-1)
+        cv2.putText(background,"GPS is "+ data_Gps[0],(680,530), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        
+        cv2.putText(background,"+Latitude :",(680,560), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,"+Longitude :",(680,610), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,"+Jarak :",(680,660), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+
+        cv2.putText(background,str(data_Gps[1]),(700,580), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[2]),(700,630), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[3]),(700,680), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+    
     def tble_view(background, data=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]):
     
         font = cv2.FONT_HERSHEY_DUPLEX
@@ -101,6 +115,11 @@ class radio_btn():
         self.Record=0
         self. signal = [0,0,0,0,0,0,0,0]
     
+    
+    
+    
+    
+    
     def Btn_Click(self,event,x,y,flags,param):
 
         
@@ -110,27 +129,27 @@ class radio_btn():
                  self.Gray = self.Gray + 1
                                     
                  if self.Gray%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(635,565), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,615), 5, (0,0,255), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,665), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,565), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,615), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,665), 5, (0,0,255), -1)
                      self.Jet = 0
                      self.Thr = 0
              if [y,x] in self.posisi[3][1]:
                  self.Jet = self.Jet + 1
                      
                  if self.Jet%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(635,615), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,565), 5, (0,0,255), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,665), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,615), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,565), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,665), 5, (0,0,255), -1)
                      self.Gray = 0
                      self.Thr = 0
              if [y,x] in self.posisi[3][2]:
                  self.Thr = self.Thr + 1
                      
                  if self.Thr%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(635,665), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,615), 5, (0,0,255), -1)
-                     self.gambar= cv2.circle(self.gambar,(635,565), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,665), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,615), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(355,565), 5, (0,0,255), -1)
                      self.Gray = 0
                      self.Jet = 0
                      
@@ -138,39 +157,39 @@ class radio_btn():
                  self.RGB = self.RGB + 1
                      
                  if self.RGB%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(355,590), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(355,640), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(155,590), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(155,640), 5, (0,0,255), -1)
                      self.Infra = 0
                      
              if [y,x] in self.posisi[2][1]:
                  self.Infra = self.Infra + 1
                      
                  if self.Infra%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(355,640), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(355,590), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(155,640), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(155,590), 5, (0,0,255), -1)
                      self.RGB = 0
              if [y,x] in self.posisi[0][0]:
                  self.Start = self.Start + 1
                      
                  if self.Start%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(105,565), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(105,615), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,565), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,615), 5, (0,0,255), -1)
                      self.Pause = 0
                      
              if [y,x] in self.posisi[0][1]:
                  self.Pause = self.Pause + 1
                      
                  if self.Pause%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(105,615), 5, (0,255,0), -1)
-                     self.gambar= cv2.circle(self.gambar,(105,565), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,615), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,565), 5, (0,0,255), -1)
                      self.Start = 0
              if [y,x] in self.posisi[1]:
                  self.Record = self.Record + 1
                  print(self.Record)
                  if self.Record%2 is not 0 :
-                     self.gambar= cv2.circle(self.gambar,(105,665), 5, (0,255,0), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,665), 5, (0,255,0), -1)
                  else:
-                     self.gambar= cv2.circle(self.gambar,(105,665), 5, (0,0,255), -1)
+                     self.gambar= cv2.circle(self.gambar,(35,665), 5, (0,0,255), -1)
              self.signal=[self.Start, self.Pause, self.Record, self.RGB, self.Infra, self.Gray, self.Jet, self.Thr]
     
         

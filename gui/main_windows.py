@@ -16,19 +16,19 @@ from process import display
 windows = main_windows(1310,710,240,240,240)
 gambar = windows.background()
 
-gambar, pss_Start = windows.button(gambar,100,550,150,'Start')
-gambar, pss_Pause= windows.button(gambar,100,600,150,'Pause')
+gambar, pss_Start = windows.button(gambar,30,550,80,'Start')
+gambar, pss_Pause= windows.button(gambar,30,600,80,'Pause')
 
 
-gambar, pss_Record= windows.button(gambar,100,650,150,'Record')
+gambar, pss_Record= windows.button(gambar,30,650,80,'Record')
 
-gambar, pss_RGB = windows.button(gambar,350,575,160,'Citra RGB')
-gambar, pss_Infra= windows.button(gambar,350,625,160,'Citra Inframerah')
+gambar, pss_RGB = windows.button(gambar,150,575,160,'Citra RGB')
+gambar, pss_Infra= windows.button(gambar,150,625,160,'Citra Inframerah')
 
 
-gambar, pss_Gray = windows.button(gambar,630,550,280,'Citra Kedalam (Gray Scale)')
-gambar, pss_JET= windows.button(gambar,630,600,280,'Citra Kedalaman (JET)')
-gambar, pss_Thres = windows.button(gambar,630,650,280,'Citra Kedalaman (Thresholding)')
+gambar, pss_Gray = windows.button(gambar,350,550,280,'Citra Kedalam (Gray Scale)')
+gambar, pss_JET= windows.button(gambar,350,600,280,'Citra Kedalaman (JET)')
+gambar, pss_Thres = windows.button(gambar,350,650,280,'Citra Kedalaman (Thresholding)')
 
 posisi =[[pss_Start,pss_Pause],pss_Record,[pss_RGB,pss_Infra],[pss_Gray,pss_JET,pss_Thres]]
 
@@ -66,6 +66,7 @@ while(1):
         
     data =display.data_jalan(lubang,data,rdio_btn.signal)
     main_windows.tble_view(gambar,data)
+    main_windows.Gps(gambar)
 
     #save video when start and rerecord button is pressed
     if rdio_btn.signal[0] == 1 and rdio_btn.signal[2] == 1:
