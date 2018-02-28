@@ -47,7 +47,7 @@ class display:
         gambar[10:490,660:1300] = img2[:,:]
         return gambar
     
-    def data_jalan(lubang,data,radio_btn):
+    def data_jalan(lubang,radio_btn,data = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]):
         if radio_btn[0] == 1:
             
             for i in lubang :

@@ -44,8 +44,11 @@ class main_windows():
         return img, position
     
     
-    def Gps (background, data_Gps = ["not connected",0,0,0]):
+    def Gps (background, data_Gps = ["not connect",0,"N",0,"E"]):
         font = cv2.FONT_HERSHEY_DUPLEX
+        
+        latar_belakang = background
+        
         cv2.rectangle(background,(630,520),(850,700),(240,240,240),-1)
         cv2.putText(background,"GPS is "+ data_Gps[0],(680,530), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         
@@ -53,9 +56,11 @@ class main_windows():
         cv2.putText(background,"+Longitude :",(680,610), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         cv2.putText(background,"+Jarak :",(680,660), font, 0.5,(50,50,50),1,cv2.LINE_AA)
 
-        cv2.putText(background,str(data_Gps[1]),(700,580), font, 0.5,(50,50,50),1,cv2.LINE_AA)
-        cv2.putText(background,str(data_Gps[2]),(700,630), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[1]) + data_Gps[2],(700,580), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[3])+ data_Gps[4],(700,630), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         cv2.putText(background,str(data_Gps[3]),(700,680), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        
+        return latar_belakang
     
     def tble_view(background, data=[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]):
     
@@ -95,6 +100,28 @@ class main_windows():
                 x = x + space[n]
                 n=n+1
             y = y + 30
+            
+    def windows ():
+        windows = main_windows(1310,710,240,240,240)
+        gambar = windows.background()
+        
+        gambar, pss_Start = windows.button(gambar,30,550,80,'Start')
+        gambar, pss_Pause= windows.button(gambar,30,600,80,'Pause')
+        
+        
+        gambar, pss_Record= windows.button(gambar,30,650,80,'Record')
+        
+        gambar, pss_RGB = windows.button(gambar,150,575,160,'Citra RGB')
+        gambar, pss_Infra= windows.button(gambar,150,625,160,'Citra Inframerah')
+        
+        
+        gambar, pss_Gray = windows.button(gambar,350,550,280,'Citra Kedalam (Gray Scale)')
+        gambar, pss_JET= windows.button(gambar,350,600,280,'Citra Kedalaman (JET)')
+        gambar, pss_Thres = windows.button(gambar,350,650,280,'Citra Kedalaman (Thresholding)')
+        
+        posisi =[[pss_Start,pss_Pause],pss_Record,[pss_RGB,pss_Infra],[pss_Gray,pss_JET,pss_Thres]]
+        
+        return gambar, posisi
 
 class radio_btn():
     ''' make button into radio button, and return signal that indicate which
@@ -191,9 +218,5 @@ class radio_btn():
                  else:
                      self.gambar= cv2.circle(self.gambar,(35,665), 5, (0,0,255), -1)
              self.signal=[self.Start, self.Pause, self.Record, self.RGB, self.Infra, self.Gray, self.Jet, self.Thr]
-    
-        
-    
-    
     
      
