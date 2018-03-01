@@ -25,6 +25,7 @@ def wahyu():
     
 def data_gps():
     global gps  
+    global swt
     data_gps=["not connect",0,"N",0,"E"] 
     error = "USB is not pluged in or port cannot to be read" 
     try:
@@ -82,7 +83,7 @@ def data_gps():
                         
                         break
                 
-            a=0
+            
             
             
             while 1:
@@ -109,10 +110,8 @@ def data_gps():
                     
                     print(data_gps)
                 
-                gps=data_gps
-                a=a+1
-#                print(time.time()-t)
-                if cv2.waitKey(20) & 0xFF == 27:
+                gps = data_gps
+                if swt == 0:
                                         
                     break
         		
@@ -143,7 +142,9 @@ def data_gps():
 
 def windows(a=0):
     global gps
-    gps=["not connect",0,"N",0,"E"] 
+#    gps=["not connect",0,"N",0,"E"] 
+    global swt
+    global data
 
     gambar, posisi = main_windows.windows() 
     cv2.namedWindow('image')
@@ -162,11 +163,13 @@ def windows(a=0):
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
     
-#    a=0
+    t1 = 0
+    
+    a = 0
     while(1):
 
-#        print(str(a))
-#        a=a+1
+        print(time.time()-t1)
+        t1 = time.time()
 
         img1 = display.layar_1(rdio_btn.signal)
         img2,depth = display.layar_2(rdio_btn.signal)
@@ -177,21 +180,26 @@ def windows(a=0):
         
     
             
-        data =display.data_jalan(lubang,rdio_btn.signal,data)
+        data, sinyal =display.data_jalan(lubang,rdio_btn.signal,data,gps)
+        
         main_windows.tble_view(gambar,data)
         latar = main_windows.Gps(gambar,gps)
         
         cv2.imshow('image',gambar)
-#        print(a)
+
         gambar = latar
     
         #save video when start and rerecord button is pressed
         if rdio_btn.signal[0] == 1 and rdio_btn.signal[2] == 1:
             frame = cv2.flip(img2,0)
             out.write(frame)
+            if sinyal==1:
+                a=a+1
+                cv2.imwrite('Lubang_Ke_'+str(a)+'.png',gambar)
     
         if cv2.waitKey(20) & 0xFF == 27:
             KinectTA.image_stop()
+            swt = 0
             break
         
     out.release()
@@ -199,11 +207,16 @@ def windows(a=0):
     
     return data
 
-#gps=["not connect",0,"N",0,"E"]
+swt = 1
+gps=["not connect",0,"N",0,"E"]
+
 #
-#t1= threading.Thread(target=windows)
-#t2= threading.Thread(target=data_gps)
-#
-#t1.start()
-#t2.start()
-windows()
+t1= threading.Thread(target=windows)
+t2= threading.Thread(target=data_gps)
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+#windows()

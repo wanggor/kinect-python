@@ -56,8 +56,8 @@ class main_windows():
         cv2.putText(background,"+Longitude :",(680,610), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         cv2.putText(background,"+Jarak :",(680,660), font, 0.5,(50,50,50),1,cv2.LINE_AA)
 
-        cv2.putText(background,str(data_Gps[1]) + data_Gps[2],(700,580), font, 0.5,(50,50,50),1,cv2.LINE_AA)
-        cv2.putText(background,str(data_Gps[3])+ data_Gps[4],(700,630), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[1])+' ' + data_Gps[2],(700,580), font, 0.5,(50,50,50),1,cv2.LINE_AA)
+        cv2.putText(background,str(data_Gps[3])+' '+ data_Gps[4],(700,630), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         cv2.putText(background,str(data_Gps[3]),(700,680), font, 0.5,(50,50,50),1,cv2.LINE_AA)
         
         return latar_belakang
@@ -94,7 +94,7 @@ class main_windows():
         for i in data[size-5:size] :
             x = 0
             n=0
-            for j in i:
+            for j in i[0:5]:
                       
                 cv2.putText(background,str(j),(930+x,695-y), font, 0.3,(50,50,50),1,cv2.LINE_AA)
                 x = x + space[n]
