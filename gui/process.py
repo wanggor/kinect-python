@@ -47,7 +47,7 @@ class display:
         gambar[10:490,660:1300] = img2[:,:]
         return gambar
     
-    def data_jalan(lubang,radio_btn,data = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],gps=["not connect",0,"N",0,"E"]):
+    def data_jalan(time,lubang,radio_btn,data = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],gps=["not connect",0,"N",0,"E"]):
         sinyal = 0
         if radio_btn[0] == 1:
             
@@ -57,7 +57,7 @@ class display:
                if i[0] >= 319 and i[0] <= 321 :
                    n=data[len(data)-1][0]+1
                                  
-                   data.append([n,i[2],i[3],i[4],'none',gps[1],gps[2],gps[3],gps[4]])
+                   data.append([n,time,i[2],i[3],i[4],'none',gps[1],gps[2],gps[3],gps[4]])
                    
                    sinyal = 1
         return data, sinyal

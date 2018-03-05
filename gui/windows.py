@@ -94,6 +94,7 @@ class main_windows():
         for i in data[size-5:size] :
             x = 0
             n=0
+            i=[i[0],i[2],i[3],i[4],i[5],i[6]]
             for j in i[0:5]:
                       
                 cv2.putText(background,str(j),(930+x,695-y), font, 0.3,(50,50,50),1,cv2.LINE_AA)

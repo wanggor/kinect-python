@@ -154,7 +154,7 @@ def windows(a=0):
     
     
     
-    data = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+    data = [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]
     
 
     
@@ -179,8 +179,8 @@ def windows(a=0):
         gambar = display.merge(rdio_btn.gambar,img1,img2)
         
     
-            
-        data, sinyal =display.data_jalan(lubang,rdio_btn.signal,data,gps)
+        waktu = time.time()
+        data, sinyal =display.data_jalan(waktu,lubang,rdio_btn.signal,data,gps)
         
         main_windows.tble_view(gambar,data)
         latar = main_windows.Gps(gambar,gps)
@@ -219,4 +219,18 @@ t2.start()
 
 t1.join()
 t2.join()
+
+data = data[5:len(data)]
+
+file = open("data_lubang.txt", "w")
+
+file.write("Nomor"+" "+"Waktu"+" "+"Luas"+" "+"Volume"+" "+"Kedalaman_Maksimal"+" "+"Kondisi"+" "+"Latitude_(derajat)"+" "+"Unit"+" "+"Latitude_(menit)"+" "+"Belahan_bumi"+" "+"Longitude_(derajat)"+" "+"Unit"+" "+"Longitude_(menit)"+" "+"Belahan_bumi"+"\n")
+for index in range(len(data)):
+    for index2 in range(len(data[index])):
+        file.write(str(data[index][index2]) + " ")
+        
+    file.write("\n")
+file.close()
+
+
 #windows()
